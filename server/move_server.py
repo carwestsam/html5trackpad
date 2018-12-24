@@ -23,6 +23,10 @@ async def counter(websocket, path):
                 print('right_click')
                 pos = m.position()
                 m.click(pos[0], pos[1], 2)
+            elif data['action'] == 'double_click':
+                print('double_click')
+                pos = m.position()
+                m.click(pos[0], pos[1], 1, 2)
             elif data['action'] == 'mousemove':
                 pos = m.position()
                 m.move(pos[0] + 2 * data['x'], pos[1] + 2 * data['y'])

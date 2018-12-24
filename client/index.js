@@ -45,17 +45,17 @@ let PAN_END = function(inputs) {
 };
 
 let ActionMouseMove = function(ev) {
-  myElement.textContent = "MouseMove";
+  // myElement.textContent = "MouseMove";
   send({
     action: "mousemove",
     x: ev.detail.data[0].change.x || 0,
     y: ev.detail.data[0].change.y || 0
   });
-  (ev.detail.events).forEach( _e => _e.originalEvent.preventDefault());
+  ev.detail.events.forEach(_e => _e.originalEvent.preventDefault());
 };
 
 let ActionDragMove = function(ev) {
-  myElement.textContent = "dragmove";
+  // myElement.textContent = "dragmove";
   send({
     action: "dragmove",
     x: ev.detail.data[0].change.x,
@@ -64,26 +64,26 @@ let ActionDragMove = function(ev) {
 };
 
 let ActionScroll = function(ev) {
-  myElement.textContent = "scroll";
-  datas = ev.detail.data
-  x = 0
-  y = 0
-  cnt = 1.0
+  // myElement.textContent = "scroll";
+  datas = ev.detail.data;
+  x = 0;
+  y = 0;
+  cnt = 1.0;
 
-  for (var i = 0; i< datas.length; i ++ ){
-    if (datas[i].change){
-      cnt += 1
-      x += datas[i].change.y
-      y += datas[i].change.x
+  for (var i = 0; i < datas.length; i++) {
+    if (datas[i].change) {
+      cnt += 1;
+      x += datas[i].change.y;
+      y += datas[i].change.x;
     }
   }
-  console.log('scroll', x/cnt, y/cnt)
+  console.log("scroll", x / cnt, y / cnt);
   send({
-    action: 'scroll',
+    action: "scroll",
     x: x / cnt,
     y: y / cnt
-  })
-}
+  });
+};
 
 let ActionMouseMoveStart = function(inputs) {
   PAN_START.call(this, inputs);
@@ -102,7 +102,6 @@ let ActionDragMoveStart = function(inputs) {
 };
 
 let ActionDragMoveEnd = function(inputs) {
-
   console.log("inputs dragend", inputs, this.numInputs);
 
   PAN_END.call(this, inputs);
@@ -113,12 +112,12 @@ let ActionDragMoveEnd = function(inputs) {
 };
 
 let ActionLeftClick = function(ev) {
-  myElement.textContent = "ActionLeftClick";
+  // myElement.textContent = "ActionLeftClick";
   send({ action: "left_click" });
 };
 
 let ActionRightClick = function(ev) {
-  myElement.textContent = "ActionRightClick";
+  // myElement.textContent = "ActionRightClick";
   send({ action: "right_click" });
 };
 
@@ -132,6 +131,7 @@ zt.register("TwoFingerPan", TwoFingerPan);
 zt.register("ThreeFingerPan", ThreeFingerPan);
 
 var url = "ws://192.168.21.101:5678/";
+// var url = "wss://6b762789.ngrok.io";
 // var url = "ws://localhost:5678"
 var ws = new WebSocket(url);
 
@@ -147,5 +147,5 @@ zt.bind(myElement)
   .TwoFingerTap(ActionRightClick)
   .OneFingerTap(ActionLeftClick)
   .OneFingerPan(ActionMouseMove, false)
-  .TwoFingerPan(ActionScroll)
-  .ThreeFingerPan(ActionDragMove)
+  .TwoFingerPan(ActionScroll, false)
+  .ThreeFingerPan(ActionDragMove);

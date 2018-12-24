@@ -1,0 +1,21 @@
+{
+  "short_name": "H5Tack",
+  "name": "Html5 TrackPad Client",
+  "icons": [
+    {
+      "src": "/assets/logo_192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/logo_512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#000000",
+  "display": "fullscreen",
+  "scope": "/",
+  "theme_color": "#000000"
+}
