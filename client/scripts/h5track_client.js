@@ -130,9 +130,7 @@ zt.register("OneFingerPan", OneFingerPan);
 zt.register("TwoFingerPan", TwoFingerPan);
 zt.register("ThreeFingerPan", ThreeFingerPan);
 
-var url = "ws://192.168.21.101:5678/";
-// var url = "wss://6b762789.ngrok.io";
-// var url = "ws://localhost:5678"
+var url = "ws://192.168.31.147:5678/";
 var ws = new WebSocket(url);
 
 function send(obj) {
